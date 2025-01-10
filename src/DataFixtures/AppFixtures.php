@@ -41,7 +41,7 @@ class AppFixtures extends Fixture
             $product = new Products();
             $product
                 ->setName($item['name'])
-                ->setSlug($this->slugger->slug($item['name']))
+                ->setSlug($this->slugger->slug(strtolower($item['name'])))
                 ->setBriefDescription($item['brief_description'])
                 ->setDescription($item['description'])
                 ->setPrice($item['price'])
