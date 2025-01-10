@@ -97,6 +97,11 @@ class Products
         return $this;
     }
 
+    public function getPriceConverded(): ?float
+    {
+        return $this->price / 100;
+    }
+
     public function getImage(): ?string
     {
         return $this->image;
