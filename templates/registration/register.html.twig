@@ -1,19 +1,34 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Register
+{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
+	{% include "layouts/navbar.html.twig" %}
 
-    {{ form_errors(registrationForm) }}
+	<main>
+		<section id="auth">
+			<div class="image">
+				<img class="heightResgister" src="{{ asset('assets/images/feuille.jpeg') }}" alt="description de l'image">
+			</div>
+			<div class="form">
+				<h2>Inscription</h2>
+				{{ form_errors(registrationForm) }}
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+				{{ form_start(registrationForm) }}
+				{{ form_row(registrationForm.lastName) }}
+				{{ form_row(registrationForm.firstName) }}
+				{{ form_row(registrationForm.email) }}
+				{{ form_row(registrationForm.plainPassword) }}
+				{{ form_row(registrationForm.confirmPassword) }}
+				{{ form_row(registrationForm.agreeTerms) }}
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+				<button type="submit" class="btn">S'inscrire</button>
+				<a href="#">Pas encore de compte ? S'inscrire</a>
+				{{ form_end(registrationForm) }}
+			</div>
+		</section>
+	</main>
+
+	{% include "layouts/footer.html.twig" %}
 {% endblock %}
