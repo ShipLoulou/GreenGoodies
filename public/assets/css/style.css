@@ -351,6 +351,8 @@ footer p {
     color: #FFF;
     height: 77px;
     margin-bottom: 30px;
+    border: none;
+    cursor: pointer;
 }
 
 #auth .form a {
