@@ -7,7 +7,7 @@
 		<ul>
 			{% if app.user %}
 				<li>
-					<a href="#">Nos produits</a>
+					<a href="{{ path('app_products') }}#products">Nos produits</a>
 				</li>
 				<li>
 					<a href="#">Mon panier</a>
@@ -16,7 +16,7 @@
 					<a href="#">Mon compte</a>
 				</li>
 				<li>
-					<a href="#">Déconnexion</a>
+					<a href="{{ path('app_logout') }}">Déconnexion</a>
 				</li>
 			{% else %}
 				<li>
