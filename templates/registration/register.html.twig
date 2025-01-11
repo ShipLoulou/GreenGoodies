@@ -18,11 +18,46 @@
 
 				{{ form_errors(registrationForm) }}
 
-				{{ form_row(registrationForm.lastName) }}
-				{{ form_row(registrationForm.firstName) }}
-				{{ form_row(registrationForm.email) }}
-				{{ form_row(registrationForm.plainPassword) }}
-				{{ form_row(registrationForm.confirmPassword) }}
+				<div>
+					{{ form_label(registrationForm.lastName) }}
+					{{ form_widget(registrationForm.lastName) }}
+					{{ form_errors(registrationForm.lastName) }}
+					{{ form_help(registrationForm.lastName) }}
+				</div>
+
+				<div>
+					{{ form_label(registrationForm.firstName) }}
+					{{ form_widget(registrationForm.firstName) }}
+					{{ form_errors(registrationForm.firstName) }}
+					{{ form_help(registrationForm.firstName) }}
+				</div>
+
+				<div>
+					{{ form_label(registrationForm.email) }}
+					{{ form_widget(registrationForm.email) }}
+					{{ form_errors(registrationForm.email) }}
+					{{ form_help(registrationForm.email) }}
+				</div>
+
+				<div>
+					{{ form_label(registrationForm.plainPassword) }}
+					{{ form_widget(registrationForm.plainPassword) }}
+					{{ form_errors(registrationForm.plainPassword) }}
+					{{ form_help(registrationForm.plainPassword) }}
+				</div>
+
+				<div id="confirmPasswordJS">
+					{{ form_label(registrationForm.confirmPassword) }}
+					{{ form_widget(registrationForm.confirmPassword) }}
+					{{ form_errors(registrationForm.confirmPassword) }}
+					{{ form_help(registrationForm.confirmPassword) }}
+				</div>
+
+				{# {{ form_row(registrationForm.lastName) }}
+																{{ form_row(registrationForm.firstName) }}
+																{{ form_row(registrationForm.email) }}
+																{{ form_row(registrationForm.plainPassword) }}
+																{{ form_row(registrationForm.confirmPassword) }} #}
 				{{ form_row(registrationForm.agreeTerms) }}
 
 				<button type="submit" class="btn">S'inscrire</button>

@@ -17,19 +17,13 @@ export default class ConfirmPassword {
                 password = password.value;
                 confim = confim.value;
 
-                const messageError = document.querySelector('.messageError');
-
-                if (messageError) {
-                    messageError.remove();
-                }
-
                 if (password !== confim) {
                     event.preventDefault();
-                    console.log('erreur');
+                    console.log('tedst');
                     const ul = document.createElement('ul');
                     ul.classList.add('messageError');
                     ul.innerHTML = `<li>Les mots de passe sont différents</li>`;
-                    this.container.insertBefore(ul, this.input);
+                    this.container.append(ul);
                 }
             })
         }

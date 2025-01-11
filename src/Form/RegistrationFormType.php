@@ -64,9 +64,6 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('confirmPassword', PasswordType::class, [
                 'label' => 'Confirmation mot de passe',
-                'row_attr' => [
-                    'id' => 'confirmPasswordJS'
-                ],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Champs conformation mot de passe obligatoire.',

@@ -37,7 +37,7 @@ body {
     font-size: 12px;
     padding: 7px;
     border-radius: 8px;
-    margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 /* Reset */
@@ -339,11 +339,16 @@ footer p {
     max-width: 437px;
 }
 
+#auth .form form div:first-child label {
+    margin-top: 0;
+}
+
 #auth .form form label {
     margin-bottom: 10px;
     font-size: 14px;
     font-weight: 400;
     color: #666666;
+    margin-top: 30px;
 }
 
 #auth .form form input {
@@ -352,7 +357,7 @@ footer p {
     background-color: #FFFDF7;
     padding: 20px;
     font-size: 20px;
-    margin-bottom: 30px;
+    /* margin-bottom: 30px; */
     color: #666666;
 }
 
@@ -364,6 +369,7 @@ footer p {
     margin-bottom: 30px;
     border: none;
     cursor: pointer;
+    margin-top: 50px;
 }
 
 #auth .form a {
@@ -383,28 +389,28 @@ footer p {
 #auth .form div.inpuCheckbox {
     display: grid;
     grid-template-columns: 19px 1fr;
-    margin-bottom: 50px;
 }
 
 #auth .form form div.inpuCheckbox ul {
     grid-column: 1 / 3;
-    grid-row: 1;
+    grid-row: 2;
 }
 
 #auth .form div.inpuCheckbox label {
-    margin: 0;
     font-size: 14px;
     font-weight: 400;
     grid-column: 2;
-    grid-row: 2;
-    margin: 0 0 0 7px;
+    grid-row: 1;
+    margin-left: 7px;
 }
 
 #auth .form div.inpuCheckbox input {
     width: 19px;
     height: 19px;
     grid-column: 1;
-    grid-row: 2;
+    grid-row: 1;
+    margin-top: 30px;
+    margin-bottom: 10px;
 }
 
 /* Page du panier */
