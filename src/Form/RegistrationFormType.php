@@ -20,13 +20,16 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('lastName', TextType::class, [
-                'label' => 'Nom'
+                'label' => 'Nom',
+                'required' => false
             ])
             ->add('firstName', TextType::class, [
-                'label' => 'Prénom'
+                'label' => 'Prénom',
+                'required' => false
             ])
             ->add('email', EmailType::class, [
-                'label' => 'Adresse email'
+                'label' => 'Adresse email',
+                'required' => false
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'label' => 'J\'accepte les CGU de GreenGoodies',
@@ -36,9 +39,10 @@ class RegistrationFormType extends AbstractType
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'You should agree to our terms.',
+                        'message' => 'Vous devez accepter les conditions d\'utilisation',
                     ]),
                 ],
+                'required' => false
             ])
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
@@ -48,19 +52,28 @@ class RegistrationFormType extends AbstractType
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Please enter a password',
+                        'message' => 'Champs mot de passe obligatoire.',
                     ]),
                     new Length([
                         'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
-                        // max length allowed by Symfony for security reasons
-                        'max' => 4096,
+                        'minMessage' => 'Le champs mot de passe doit comptenir au minimum {{ limit }} caractères.',
+                        'max' => 255
                     ]),
                 ],
+                'required' => false
             ])
             ->add('confirmPassword', PasswordType::class, [
                 'label' => 'Confirmation mot de passe',
-                'mapped' => false
+                'row_attr' => [
+                    'id' => 'confirmPasswordJS'
+                ],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Champs conformation mot de passe obligatoire.',
+                    ]),
+                ],
+                'mapped' => false,
+                'required' => false
             ])
         ;
     }
@@ -69,6 +82,7 @@ class RegistrationFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => User::class,
+            'attr' => ['id' => 'formRegisterJS']
         ]);
     }
 }
