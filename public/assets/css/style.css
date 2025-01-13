@@ -526,6 +526,7 @@ footer p {
     margin-bottom: 14px;
     color: #666666;
     cursor: pointer;
+    display: block;
 }
 
 #shopping .valid {
@@ -612,4 +613,8 @@ footer p {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     justify-items: start;
+}
+
+.noProduct {
+    margin: 17vh 0;
 }

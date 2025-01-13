@@ -32,10 +32,43 @@ class CartController extends AbstractController
         $session->set('cart', $cart);
 
         $this->addFlash('success', 'Le produit à bien été ajouté au panier.');
-        // dd($cart);
 
         return $this->redirectToRoute('app_one_product', [
             'slug' => $product->getSlug()
         ]);
+    }
+
+    #[Route('/panier', name: 'app_cart_show')]
+    public function show(SessionInterface $session)
+    {
+        $detailedCart = [];
+        $total = 0;
+
+        foreach ($session->get('cart', []) as $id => $quantity) {
+            $product = $this->productsRepository->find($id);
+
+            $detailedCart[] = [
+                'product' => $product,
+                'quantity' => $quantity
+            ];
+
+            $total += ($product->getPrice() * $quantity);
+        }
+
+        return $this->render('cart/index.html.twig', [
+            'items' => $detailedCart,
+            'total' => $total / 100
+        ]);
+    }
+
+    #[Route('/panier/delete', name: 'app_cart_delete')]
+    public function delete(SessionInterface $session)
+    {
+
+        $session->set('cart', []);
+
+        $this->addFlash('success', 'Le panier à bien été vidé.');
+
+        return $this->redirectToRoute('app_cart_show');
     }
 }
