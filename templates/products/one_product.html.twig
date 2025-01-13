@@ -1,8 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-	{% include "layouts/navbar.html.twig" %}
-
 	<main>
 		<section id="product">
 			<div class="image">
@@ -15,10 +13,8 @@
 					<h3>Description</h3>
 					<p>{{ product.description }}</p>
 				</div>
-				<button>Ajouter au panier</button>
+				<a href="{{ path('app_cart_add', {'id': product.id}) }}">Ajouter au panier</a>
 			</div>
 		</section>
 	</main>
-
-	{% include "layouts/footer.html.twig" %}
 {% endblock %}

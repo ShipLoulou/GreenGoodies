@@ -4,8 +4,6 @@
 {% endblock %}
 
 {% block body %}
-	{% include "layouts/navbar.html.twig" %}
-
 	<main>
 		<section id="auth">
 			<div class="image">
@@ -53,11 +51,6 @@
 					{{ form_help(registrationForm.confirmPassword) }}
 				</div>
 
-				{# {{ form_row(registrationForm.lastName) }}
-																{{ form_row(registrationForm.firstName) }}
-																{{ form_row(registrationForm.email) }}
-																{{ form_row(registrationForm.plainPassword) }}
-																{{ form_row(registrationForm.confirmPassword) }} #}
 				{{ form_row(registrationForm.agreeTerms) }}
 
 				<button type="submit" class="btn">S'inscrire</button>
@@ -66,6 +59,4 @@
 			</div>
 		</section>
 	</main>
-
-	{% include "layouts/footer.html.twig" %}
 {% endblock %}

@@ -10,7 +10,22 @@
 		<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}"> {% block stylesheets %}{% endblock %}{% block javascripts %}{% endblock %}
 		</head>
 		<body>
+			{% include "layouts/navbar.html.twig" %}
+
+			<div class="notification">
+				{% for rubrique, messages in app.flashes %}
+					{% for message in messages %}
+						<div class="alert-{{ rubrique }}">
+							<p>{{ message }}</p>
+							<button>x</button>
+						</div>
+					{% endfor %}
+				{% endfor %}
+			</div>
+
 			{% block body %}{% endblock %}
+
+			{% include "layouts/footer.html.twig" %}
 			<script type="module" src="{{ asset('assets/js/main.js') }}"></script>
 		</body>
 	</html>

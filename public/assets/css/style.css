@@ -40,6 +40,36 @@ body {
     margin-top: 10px;
 }
 
+.notification {
+    position: fixed;
+    top: 90px;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+}
+
+.notification .alert-success {
+    color: #FFF;
+    background-color: rgba(0, 128, 0, 0.463);
+    border: 2px solid rgba(0, 128, 0, 0.678);
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 14px;
+    max-width: 200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px;
+}
+
+.notification .alert-success button {
+    padding: 5px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
 /* Reset */
 
 /* Header */
@@ -295,7 +325,7 @@ footer p {
     margin-bottom: 15px;
 }
 
-#product .text button {
+#product .text a {
     position: absolute;
     bottom: 0;
     width: 72%;
@@ -303,6 +333,9 @@ footer p {
     color: #FFF;
     height: 77px;
     border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* pages d'authentification */
