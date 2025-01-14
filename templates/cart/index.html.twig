@@ -34,6 +34,6 @@
 			{% endif %}
 
 		</div>
-		<button class="valid">Valider la commande</button>
+		<a href="{{ path('app_orders_add', {'price': total * 100}) }}" class="valid">Valider la commande</a>
 	</section>
 {% endblock %}

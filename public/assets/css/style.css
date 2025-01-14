@@ -537,6 +537,9 @@ footer p {
     margin-top: 29px;
     margin-bottom: 146px;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* page mon compte */
