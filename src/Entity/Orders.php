@@ -33,6 +33,11 @@ class Orders
         return $this->validationDate;
     }
 
+    public function getValidationDateToString(): ?string
+    {
+        return $this->validationDate->format('d/m/Y');
+    }
+
     public function setValidationDate(\DateTimeInterface $validationDate): static
     {
         $this->validationDate = $validationDate;
@@ -50,6 +55,11 @@ class Orders
         $this->price = $price;
 
         return $this;
+    }
+
+    public function getPriceConverded(): ?float
+    {
+        return $this->price / 100;
     }
 
     public function getUser(): ?User
