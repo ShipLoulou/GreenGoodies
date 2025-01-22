@@ -50,7 +50,7 @@ security:
     access_control:
         - { path: ^/api/login, roles: API_ACTIVE }
         - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
-        # - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/(panier|commandes), roles: ROLE_USER }
         # - { path: ^/profile, roles: ROLE_USER }
 
 when@test:

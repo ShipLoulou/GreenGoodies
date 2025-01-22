@@ -6,8 +6,8 @@ use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
@@ -15,12 +15,11 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 class SecurityController extends AbstractController
 {
     #[Route(path: '/auth/connexion', name: 'app_login')]
-    public function login(AuthenticationUtils $authenticationUtils): Response
-    {
-        // get the login error if there is one
+    public function login(
+        AuthenticationUtils $authenticationUtils
+    ): Response {
         $error = $authenticationUtils->getLastAuthenticationError();
 
-        // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
         return $this->render('security/login.html.twig', [
@@ -35,16 +34,35 @@ class SecurityController extends AbstractController
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 
+    #[Route('/auth/delete', name: 'app_auth_deleteUser')]
+    public function deleteUser(
+        EntityManagerInterface $em,
+    ) {
+        $user = $this->getUser();;
+
+        // Définie le token de l'utilisateur connecté à null.
+        $this->container->get('security.token_storage')->setToken(null);
+
+        $em->remove($user);
+        $em->flush();
+
+        return $this->redirectToRoute('app_products');
+    }
+
     #[Route('/activationApi', name: 'app_apiActivation')]
     public function apiActivation(
         UserRepository $userRepository,
         EntityManagerInterface $em,
         TokenStorageInterface $tokenStorage
     ): Response {
+        // Cherche l'utilisateur connecté.
         $email = $this->getUser()->getUserIdentifier();
         $user = $userRepository->findOneBy(['email' => $email]);
+
+        // Tableau contenant tous les rôles actuelles de l'utilisateur
         $arrayRoles = $user->getRoles();
 
+        // Si 'API_ACTIVE' n'est pas dans le tableau des rôles, le rajouter, sinon le supprimer.
         if (!in_array('API_ACTIVE', $arrayRoles)) {
             $arrayRoles[] = 'API_ACTIVE';
         } else {
@@ -54,6 +72,7 @@ class SecurityController extends AbstractController
         $user->setRoles($arrayRoles);
         $em->flush();
 
+        // Permet à l'utilisateur de rester connecté lors du changement de rôle.
         $tokenStorage->setToken(new UsernamePasswordToken($user, 'main', $user->getRoles()));
 
         return $this->redirectToRoute('app_orders_show');

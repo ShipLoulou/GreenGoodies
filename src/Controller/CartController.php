@@ -10,17 +10,23 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class CartController extends AbstractController
 {
-    public function __construct(private ProductsRepository $productsRepository) {}
+    public function __construct(
+        private ProductsRepository $productsRepository
+    ) {}
 
     #[Route('/panier/add/{id}', name: 'app_cart_add', requirements: ['id' => "\d+"])]
-    public function add($id, SessionInterface $session): Response
-    {
+    public function add(
+        $id,
+        SessionInterface $session
+    ): Response {
+
         $product = $this->productsRepository->find($id);
 
         if (!$product) {
             throw $this->createNotFoundException("Le produit $id n'exite pas.");
         }
 
+        // Récupération de la session carte, si elle n'existe pas créer un tableau vide.
         $cart = $session->get('cart', []);
 
         if (array_key_exists($id, $cart)) {
@@ -29,6 +35,7 @@ class CartController extends AbstractController
             $cart[$id] = 1;
         }
 
+        // Insérer le nouveau tableau dans la session carte.
         $session->set('cart', $cart);
 
         $this->addFlash('success', 'Le produit à bien été ajouté au panier.');
@@ -39,10 +46,15 @@ class CartController extends AbstractController
     }
 
     #[Route('/panier', name: 'app_cart_show')]
-    public function show(SessionInterface $session)
-    {
+    public function show(
+        SessionInterface $session
+    ): Response {
+
+        // Contient l'ensembles dans produits avec leurs quantités.
         $detailedCart = [];
-        $total = 0;
+
+        // Prix total de l'ensemble des produits dans le panier.
+        $totalPrice = 0;
 
         foreach ($session->get('cart', []) as $id => $quantity) {
             $product = $this->productsRepository->find($id);
@@ -52,18 +64,23 @@ class CartController extends AbstractController
                 'quantity' => $quantity
             ];
 
-            $total += ($product->getPrice() * $quantity);
+            $totalPrice += ($product->getPrice() * $quantity);
         }
+
+        $totalPriceToString = $totalPrice / 100;
+        $totalPriceToString = number_format($totalPriceToString, 2, ',', ' ');
 
         return $this->render('cart/index.html.twig', [
             'items' => $detailedCart,
-            'total' => $total / 100
+            'totalPriceToString' => "$totalPriceToString €",
+            'totalPrice' => $totalPrice
         ]);
     }
 
     #[Route('/panier/delete', name: 'app_cart_delete')]
-    public function delete(SessionInterface $session)
-    {
+    public function delete(
+        SessionInterface $session
+    ): Response {
 
         $session->set('cart', []);
 

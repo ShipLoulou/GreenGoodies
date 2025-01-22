@@ -21,6 +21,7 @@ class Orders
     private ?int $price = null;
 
     #[ORM\ManyToOne(inversedBy: 'orders')]
+    #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
     public function getId(): ?int
@@ -57,9 +58,11 @@ class Orders
         return $this;
     }
 
-    public function getPriceConverded(): ?float
+    public function getPriceFormated(): ?string
     {
-        return $this->price / 100;
+        $number = $this->price / 100;
+        $test = number_format($number, 2, ',', ' ');
+        return "$test €";
     }
 
     public function getUser(): ?User

@@ -22,7 +22,7 @@
 						<tr>
 							<td>{{ order.id }}</td>
 							<td>{{ order.validationDateToString }}</td>
-							<td>{{ order.priceConverded|replace({'.': ","}) }}€</td>
+							<td>{{ order.priceFormated }}</td>
 						</tr>
 					{% endfor %}
 				</tbody>
@@ -37,7 +37,7 @@
 		</div>
 
 		<div class="apiAccess">
-			<a href="">Supprimer mon compte</a>
+			<a href="{{ path('app_auth_deleteUser') }}">Supprimer mon compte</a>
 		</div>
 	</section>
 

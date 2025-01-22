@@ -19,14 +19,14 @@
 								<h3>{{ item.product.name }}</h3>
 								<p class="quantity">Quantité :
 									{{ item.quantity }}</p>
-								<p class="price">{{ item.product.priceConverded|replace({'.': ","}) }}€</p>
+								<p class="price">{{ item.product.priceFormated }}</p>
 							</figcaption>
 						</figure>
 					</div>
 				{% endfor %}
 				<div class="total">
 					<div class="text">
-						<h3>Total panier :<span>{{ total|replace({'.': ","}) }}€</span>
+						<h3>Total panier :<span>{{ totalPriceToString }}</span>
 						</h3>
 						<p>Frais de livraison : Offert</p>
 					</div>
@@ -34,6 +34,6 @@
 			{% endif %}
 
 		</div>
-		<a href="{{ path('app_orders_add', {'price': total * 100}) }}" class="valid">Valider la commande</a>
+		<a href="{{ path('app_orders_add', {'price': totalPrice}) }}" class="valid">Valider la commande</a>
 	</section>
 {% endblock %}

@@ -43,6 +43,7 @@ class ProductsController extends AbstractController
     {
         $products = $this->productsRepository->findAll();
 
+        // Modification du shéma des données pour respecter le cahier des charges
         $schema = [];
 
         foreach ($products as $product) {
