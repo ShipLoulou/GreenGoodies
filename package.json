@@ -1,0 +1,23 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "minifi:JSFolderOne": "uglifyjs-folder ./public/assets/js -eo ./public/assets/jsMinify"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShipLoulou/GreenGoodies.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ShipLoulou/GreenGoodies/issues"
+  },
+  "homepage": "https://github.com/ShipLoulou/GreenGoodies#readme",
+  "description": "",
+  "devDependencies": {
+    "uglify-js": "^3.19.3",
+    "uglifyjs-folder": "^3.3.0"
+  }
+}

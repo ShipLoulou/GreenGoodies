@@ -7,7 +7,7 @@
 			{% block title %}Green Goodies
 			{% endblock %}
 		</title>
-		<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}"> {% block stylesheets %}{% endblock %}{% block javascripts %}{% endblock %}
+		<link rel="stylesheet" href="{{ asset('assets/css/style.min.css') }}"> {% block stylesheets %}{% endblock %}{% block javascripts %}{% endblock %}
 		</head>
 		<body>
 			{% include "layouts/navbar.html.twig" %}
@@ -28,6 +28,6 @@
 			</main>
 
 			{% include "layouts/footer.html.twig" %}
-			<script type="module" src="{{ asset('assets/js/main.js') }}"></script>
+			<script type="module" src="{{ asset('assets/jsMinify/main.min.js') }}"></script>
 		</body>
 	</html>
