@@ -66,6 +66,8 @@ class AppFixtures extends Fixture
             ->setPassword($hash)
         ;
 
+        $manager->persist($user);
+
         $manager->flush();
     }
 }

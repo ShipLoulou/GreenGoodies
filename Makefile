@@ -28,6 +28,12 @@ init: ## Initialiser un projet Symfony complet
 		$(ADD_FILE) public/assets/js/main.js
 		@$(call "The application is available at: http://127.0.0.1:8000/.")
 
+add-data: ## Création de la base de donnée, gestion des migrations & fixtures
+		$(COMPOSER) install
+		$(SYMFONY_CONSOLE) doctrine:database:create
+		$(SYMFONY_CONSOLE) doctrine:schema:update --force
+		$(SYMFONY_CONSOLE) d:f:l --no-interaction
+		
 ## —— 🎻 Composer ——
 composer-install-twig: ## Installation de twig
 		$(COMPOSER_INSTALL) twig
