@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "minifi:JSFolderOne": "uglifyjs-folder ./public/assets/js -eo ./public/assets/jsMinify"
+    "minifi:JSFolderOne": "uglifyjs-folder ./assets/js -eo ./public/assets/jsMinify"
   },
   "repository": {
     "type": "git",

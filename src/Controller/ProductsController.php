@@ -38,7 +38,6 @@ class ProductsController extends AbstractController
     }
 
     #[Route('/api/products', name: 'api_products', methods: ['GET'])]
-    #[IsGranted('API_ACTIVE', message: 'Accès API non activé')]
     public function getAllProducts(): JsonResponse
     {
         $products = $this->productsRepository->findAll();
@@ -52,7 +51,7 @@ class ProductsController extends AbstractController
                 'name' => $product->getName(),
                 'shortDescription' => $product->getBriefDescription(),
                 'fullDescription' => $product->getDescription(),
-                'price' => $product->getPriceConverded(),
+                'price' => $product->getPriceFormated(),
                 'picture' => $product->getImage()
             ];
         }
